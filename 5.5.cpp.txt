@@ -1,0 +1,43 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+vector<int> mul(vector<int>&a,vector<int>&b){
+    vector<int>res(a.size()+b.size(),0);
+    for(int i=0;i<a.size();i++){
+        for(int j=0;j<b.size();j++){
+            res[i+j]+=a[i]*b[j];
+        }
+    }
+    int carry=0;
+    for(int i=0;i<res.size();i++){
+        int sum=res[i]+carry;
+        res[i]=sum%10;
+        carry=sum/10;
+    }
+    while(res.size()>1&&res.back()==0)res.pop_back();
+    return res;
+}
+
+vector<int> str2vec(string s){
+    vector<int>v;
+    for(int i=s.size()-1;i>=0;i--)v.push_back(s[i]-'0');
+    return v;
+}
+
+int main(){
+    int T;
+    cin>>T;
+    while(T--){
+        string s1,s2;
+        cin>>s1>>s2;
+        vector<int>a=str2vec(s1);
+        vector<int>b=str2vec(s2);
+        vector<int>ans=mul(a,b);
+        for(int i=ans.size()-1;i>=0;i--)cout<<ans[i];
+        cout<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,17 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main(){
+    int n,k,m;
+    cin>>n>>k>>m;
+    vector<int>v;
+    for(int i=0;i<n;i++)v.push_back(i);
+    int pos=k;
+    while(v.size()>1){
+        pos=(pos+m-1)%v.size();
+        v.erase(v.begin()+pos);
+    }
+    cout<<v[0]<<endl;
+    return 0;
+}

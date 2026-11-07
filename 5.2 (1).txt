@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+int count_digit(int num, int target)
+{
+    int cnt=0;
+    while(num>0)
+    {
+        int d =num%10;
+        if(d==target)
+            cnt++;
+        num=num/10;
+    }
+    return cnt;
+}
+
+bool is_leap(int y)
+{
+    if( (y%4==0 && y%100!=0) || (y%400==0) )
+        return true;
+    return false;
+}
+
+int main()
+{
+    int y, m, x;
+    while(cin>>y>>m>>x)
+    {
+        int day_max;
+        if(m == 2)
+        {
+            if(is_leap(y)) day_max = 29;
+            else day_max = 28;
+        }
+        else if(m==4 || m==6 || m==9 || m==11)
+            day_max = 30;
+        else
+            day_max = 31;
+
+        int ans = 0;
+        int cnt_y = count_digit(y, x);
+        int cnt_m = count_digit(m, x);
+        if(m < 10 && x == 0)
+        {
+            cnt_m += 1;
+        }
+
+        for(int day=1; day <= day_max; day++)
+        {
+            int cnt_d = count_digit(day, x);
+            if(day<10 && x==0)
+            {
+                cnt_d +=1;
+            }
+            ans=ans+cnt_y+cnt_m+cnt_d;
+        }
+        cout<<ans<<endl;
+    }
+    return 0;
+}

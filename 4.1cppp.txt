@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+#include <climits>
+using namespace std;
+int main()
+{
+    int T;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        int n;
+        cin>>n;
+        long long sum=0;
+        long long square_sum=0;
+        long long max_num,min_num;
+        long long x;
+        cin>>x;
+        max_num=x;
+        min_num=x;
+        sum=sum+x;
+        square_sum=square_sum+x*x;
+        for(int j=1;j<n;j++)
+        {
+           cin>>x;
+            sum=sum+x;
+            square_sum=square_sum+x*x;
+            if (x > max_num)
+            {
+                max_num = x;
+            }
+            if (x < min_num)
+            {
+                min_num = x;
+            }
+        }
+        long long range = max_num - min_num;
+        double avg=1.0*sum/n;
+        double variance=1.0*square_sum/n- avg*avg;
+
+        cout<<fixed<<setprecision(3);
+        cout<<range<<" "<<variance<<endl;
+    }
+    return 0;   
+}
