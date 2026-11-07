@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+#include<stack>
+using namespace std;
+
+int main()
+{
+string s;
+cin>>s;
+ stack<char> st;
+    for(char c:s)
+    {
+st.push(c);
+ if(st.size()>=2)
+        {
+    char b=st.top();st.pop();
+      char a=st.top();
+    if(a=='a'&&b=='b')
+     {
+                st.pop();
+ }
+            else
+            {
+                st.push(b);
+            }
+        }
+    }
+    if(st.empty())
+        cout<<"Good"<<endl;
+    else
+        cout<<"Bad"<<endl;
+    return 0;
+}

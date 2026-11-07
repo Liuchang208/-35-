@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<bool> sum;
+vector<int> path;
+void backtracking(){
+    if(path.size()==8){
+        for(auto i:path){cout<<i<<' ';}
+        cout<<endl;
+        return;
+    }
+    for(int i=1;i<9;++i){
+        if(!sum[i])continue;
+        path.push_back(i);
+        sum[i]=false;
+        backtracking();
+        sum[i]=true;
+        path.pop_back();
+    }
+}
+int main(){
+    sum.assign(9,true);
+    backtracking();
+}
